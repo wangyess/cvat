@@ -1,0 +1,28 @@
+{
+  "name": "i18n-inject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "inject-i18n": "bin/inject-i18n.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.6.0",
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.12"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.6",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "5.0.2"
+  },
+  "scripts": {
+    "inject-i18n": "bin/inject-i18n.js"
+  }
+}

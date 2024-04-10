@@ -1,0 +1,119 @@
+{
+  "list": [
+    {
+      "key": "",
+      "value": "title1",
+      "file": "jsx.tsx",
+      "condition": "div[title]",
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 17,
+          "index": 184
+        },
+        "end": {
+          "line": 10,
+          "column": 31,
+          "index": 198
+        }
+      },
+      "id": 1
+    },
+    {
+      "key": "",
+      "value": "Text1",
+      "file": "jsx.tsx",
+      "condition": "Text",
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 16,
+          "index": 270
+        },
+        "end": {
+          "line": 12,
+          "column": 34,
+          "index": 288
+        }
+      },
+      "id": 2
+    },
+    {
+      "key": "",
+      "value": "The task {{taskID}} will be deleted",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 14,
+          "index": 127
+        },
+        "end": {
+          "line": 23,
+          "column": 1,
+          "index": 458
+        }
+      },
+      "file": "call.ts",
+      "condition": "Modal.confirm()",
+      "id": 3
+    },
+    {
+      "key": "",
+      "value": "All related data (images, annotations) will be lost. Continue?",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 14,
+          "index": 127
+        },
+        "end": {
+          "line": 23,
+          "column": 1,
+          "index": 458
+        }
+      },
+      "file": "call.ts",
+      "condition": "Modal.confirm()",
+      "id": 4
+    },
+    {
+      "key": "",
+      "value": "cvat-modal-confirm-delete-task",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 14,
+          "index": 127
+        },
+        "end": {
+          "line": 23,
+          "column": 1,
+          "index": 458
+        }
+      },
+      "file": "call.ts",
+      "condition": "Modal.confirm()",
+      "id": 5
+    },
+    {
+      "key": "",
+      "value": "Delete",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 14,
+          "index": 127
+        },
+        "end": {
+          "line": 23,
+          "column": 1,
+          "index": 458
+        }
+      },
+      "file": "call.ts",
+      "condition": "Modal.confirm()",
+      "id": 6
+    }
+  ],
+  "lastId": 6
+}
