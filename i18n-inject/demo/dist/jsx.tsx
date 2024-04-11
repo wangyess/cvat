@@ -7,12 +7,12 @@ import Tabs from 'antd/lib/tabs';
 // @ts-ignore
 function GoBackButton(): JSX.Element {
   return <>
-            <div title={t("title1")} />
+            <div title={/*i18n-1*/t("title1")} />
             <Tabs.TabPane tab='Quality' key='key1'>
-                <Text>{t("Text1")}</Text>
+                <Text>{/*i18n-2*/t("Text1")}</Text>
             </Tabs.TabPane>
             <Tabs.TabPane tab='Quality' key='key2' />
-            <span>title2</span>
+            <span>{/*i18n-3*/t("Delete")}</span>
         </>;
 }
 export default React.memo(GoBackButton);

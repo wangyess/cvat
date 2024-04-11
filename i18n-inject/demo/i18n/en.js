@@ -1,5 +1,5 @@
-// lastId: 6
-// createAt: 2024-4-11 2:51
+// lastId: 7
+// createAt: 2024-4-11 9:46
 export default {
     // id: 1
     "title1": "title1",
@@ -8,15 +8,15 @@ export default {
     "Text1": "Text1",
 
     // id: 3
-    "The task {{taskID}} will be deleted": "The task {{taskID}} will be deleted",
+    "Delete": "Delete",
 
     // id: 4
-    "All related data (images, annotations) will be lost. Continue?": "All related data (images, annotations) will be lost. Continue?",
+    "The task {{taskID}} will be deleted": "The task {{taskID}} will be deleted",
 
     // id: 5
-    "cvat-modal-confirm-delete-task": "cvat-modal-confirm-delete-task",
+    "All related data (images, annotations) will be lost. Continue?": "All related data (images, annotations) will be lost. Continue?",
 
     // id: 6
-    "Delete": "Delete",
+    "cvat-modal-confirm-delete-task": "cvat-modal-confirm-delete-task",
 
 }

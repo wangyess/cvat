@@ -79,6 +79,7 @@ program
             )
         }
         const rcFile = path.join(configFileDir, conf.i18n.resourceRawFile);
+        log('saving', rcFile);
         await fse.outputJSON(rcFile, i18nStore, { spaces: 2 });
     })
 
@@ -129,10 +130,32 @@ program.command('export-rc')
             const rcFilePath = path.join(configFileDir, conf.i18n.resourceFile);
             const { list, lastId } = require(rcRawFilePath) as RcRaw;
             const PRE_LINE = '    ';
-            const mapStr = list.map(({ key, value, id}) => {
-                return `${PRE_LINE}// id: ${id}\n`
-                    + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(value)},\n`
-            }).join('\n')
+            const mapStr = list
+                .map(({key, value, ...other}) => ({
+                    key: key || value,
+                    value,
+                    ...other,
+                }))
+                .reduce((pre, item) => {
+                    const { key, value } = item;
+                    const { set, list } = pre;
+                    if (!set.has(key)) {
+                        list.push(item);
+                        set.add(key);
+                    } else {
+                        log('warning', 'remove same key', `${key} -> ${value}`)
+                    }
+                    return pre;
+                }, {
+                    set: new Set<string>(),
+                    list: [] as I18nItem[],
+                })
+                .list
+                .map(({ key, value, id}) => {
+                    return `${PRE_LINE}// id: ${id}\n`
+                        + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(value)},\n`
+                })
+                .join('\n')
             const now = new Date();
             const nowTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `
                 + `${now.getHours()}:${now.getMinutes()}`

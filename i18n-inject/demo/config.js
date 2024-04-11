@@ -12,7 +12,8 @@ module.exports = {
             'div[title]'
         ],
         JSXInnerText: [
-            'Text'
+            'Text',
+            'span'
         ],
         CallExpression: [
             'Modal.confirm',

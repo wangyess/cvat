@@ -12,7 +12,7 @@ function GoBackButton(): JSX.Element {
                 <Text>Text1</Text>
             </Tabs.TabPane>
             <Tabs.TabPane tab='Quality' key='key2'/>
-            <span>title2</span>
+            <span>Delete</span>
         </>
     );
 }

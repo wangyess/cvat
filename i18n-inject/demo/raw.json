@@ -40,26 +40,26 @@
     },
     {
       "key": "",
-      "value": "The task {{taskID}} will be deleted",
+      "value": "Delete",
+      "file": "jsx.tsx",
+      "condition": "span",
       "loc": {
         "start": {
-          "line": 11,
-          "column": 14,
-          "index": 127
+          "line": 15,
+          "column": 12,
+          "index": 382
         },
         "end": {
-          "line": 23,
-          "column": 1,
-          "index": 458
+          "line": 15,
+          "column": 31,
+          "index": 401
         }
       },
-      "file": "call.ts",
-      "condition": "Modal.confirm()",
       "id": 3
     },
     {
       "key": "",
-      "value": "All related data (images, annotations) will be lost. Continue?",
+      "value": "The task {{taskID}} will be deleted",
       "loc": {
         "start": {
           "line": 11,
@@ -78,7 +78,7 @@
     },
     {
       "key": "",
-      "value": "cvat-modal-confirm-delete-task",
+      "value": "All related data (images, annotations) will be lost. Continue?",
       "loc": {
         "start": {
           "line": 11,
@@ -97,7 +97,7 @@
     },
     {
       "key": "",
-      "value": "Delete",
+      "value": "cvat-modal-confirm-delete-task",
       "loc": {
         "start": {
           "line": 11,
@@ -113,7 +113,26 @@
       "file": "call.ts",
       "condition": "Modal.confirm()",
       "id": 6
+    },
+    {
+      "key": "",
+      "value": "Delete",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 14,
+          "index": 127
+        },
+        "end": {
+          "line": 23,
+          "column": 1,
+          "index": 458
+        }
+      },
+      "file": "call.ts",
+      "condition": "Modal.confirm()",
+      "id": 7
     }
   ],
-  "lastId": 6
+  "lastId": 7
 }
