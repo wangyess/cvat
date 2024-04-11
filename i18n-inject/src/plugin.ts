@@ -117,7 +117,7 @@ export function transPlugin(
                         hasTranslate = true;
                         children[0] = t.jSXExpressionContainer(
                             wrapStringLiteral(
-                                t.stringLiteral(children[0].value),
+                                t.stringLiteral(children[0].value.trim()),
                                 i18n.functionName,
                                 saveKey,
                             ),

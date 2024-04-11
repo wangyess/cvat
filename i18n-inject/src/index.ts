@@ -78,9 +78,9 @@ program
                 i18nStore,
             )
         }
-        const rcFile = path.join(configFileDir, conf.i18n.resourceRawFile);
-        log('saving', rcFile);
-        await fse.outputJSON(rcFile, i18nStore, { spaces: 2 });
+        const rcRawFile = path.join(configFileDir, conf.i18n.resourceRawFile);
+        log('saving', rcRawFile);
+        await fse.outputJSON(rcRawFile, i18nStore, { spaces: 2 });
     })
 
 program.command('clean-up')
