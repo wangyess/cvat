@@ -6,7 +6,6 @@ const defaultSaveKeyFn = () => ({
     key: '',
     value: '',
     file: 'unknown',
-    condition: 'unknown',
     id: -1,
     tag: 'default',
 });
@@ -90,7 +89,6 @@ function wrapTemplateLiteral(node, funcName, saveKey = defaultSaveKeyFn) {
         if (core_1.types.isIdentifier(exp)) {
             const { name } = exp;
             str = name;
-            console.log('prop name', name);
             expressionProps.push(core_1.types.objectProperty(core_1.types.identifier(name), core_1.types.identifier(name), false, true));
         }
         return {

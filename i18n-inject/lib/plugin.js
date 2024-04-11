@@ -25,7 +25,7 @@ function transPlugin({ fileName, store, i18n, sets, }) {
                 if (name && CallExpressionSet.has(name)) {
                     logCall('deal', name);
                     const saveKey = (opt) => {
-                        return store.add(Object.assign(Object.assign({}, opt), { file: fileName, condition: `${name}()` }));
+                        return store.add(Object.assign(Object.assign({}, opt), { file: fileName, tag: `${name}()` }));
                     };
                     // @ts-ignore
                     path.node.arguments = path.node.arguments.map((arg, index) => {
@@ -46,7 +46,7 @@ function transPlugin({ fileName, store, i18n, sets, }) {
             },
             JSXAttribute(path) {
                 const name = (0, ast_1.getJSXElementAndAttrName)(path);
-                const saveKey = (opt) => store.add(Object.assign(Object.assign({}, opt), { file: fileName, condition: name, loc: path.node.loc }));
+                const saveKey = (opt) => store.add(Object.assign(Object.assign({}, opt), { file: fileName, tag: name, loc: path.node.loc }));
                 if (name && JSXAttributeSet.has(name) && core_1.types.isStringLiteral(path.node.value)) {
                     path.node.value = core_1.types.jSXExpressionContainer((0, ast_1.wrapStringLiteral)(path.node.value, i18n.functionName, saveKey));
                 }
@@ -54,7 +54,7 @@ function transPlugin({ fileName, store, i18n, sets, }) {
             JSXElement(path) {
                 const tagName = (0, ast_1.getJSXElementName)(path.node.openingElement);
                 const { children } = path.node;
-                const saveKey = (opt) => store.add(Object.assign(Object.assign({}, opt), { file: fileName, condition: tagName, loc: path.node.loc }));
+                const saveKey = (opt) => store.add(Object.assign(Object.assign({}, opt), { file: fileName, tag: tagName, loc: path.node.loc }));
                 if (tagName && JSXInnerTextSet.has(tagName)) {
                     // console.log(children.length, children[0]);
                     if (children.length === 1 && core_1.types.isJSXText(children[0])) {

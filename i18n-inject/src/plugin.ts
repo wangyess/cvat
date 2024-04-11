@@ -54,7 +54,7 @@ export function transPlugin(
                         return store.add({
                             ...opt,
                             file: fileName,
-                            condition: `${name}()`,
+                            tag: `${name}()`,
                         } as I18nItem);
                     }
                     // @ts-ignore
@@ -93,7 +93,7 @@ export function transPlugin(
                 const saveKey = (opt: Partial<I18nItem>) => store.add({
                     ...opt,
                     file: fileName,
-                    condition: name,
+                    tag: name,
                     loc: path.node.loc,
                 } as I18nItem);
                 if (name && JSXAttributeSet.has(name) && t.isStringLiteral(path.node.value)) {
@@ -108,7 +108,7 @@ export function transPlugin(
                 const saveKey = (opt: Partial<I18nItem>): I18nItem => store.add({
                     ...opt,
                     file: fileName,
-                    condition: tagName,
+                    tag: tagName,
                     loc: path.node.loc,
                 } as I18nItem);
                 if (tagName && JSXInnerTextSet.has(tagName)) {

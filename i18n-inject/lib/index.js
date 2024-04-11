@@ -8,6 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -74,6 +85,7 @@ commander_1.program
         yield (0, transform_1.transformFile)(inFile, file, outFile, conditionSets, conf.i18n, i18nStore);
     }
     const rcFile = path_1.default.join(configFileDir, conf.i18n.resourceRawFile);
+    log('saving', rcFile);
     yield fs_extra_1.default.outputJSON(rcFile, i18nStore, { spaces: 2 });
 }));
 commander_1.program.command('clean-up')
@@ -111,10 +123,32 @@ commander_1.program.command('export-rc')
     const rcFilePath = path_1.default.join(configFileDir, conf.i18n.resourceFile);
     const { list, lastId } = require(rcRawFilePath);
     const PRE_LINE = '    ';
-    const mapStr = list.map(({ key, value, id }) => {
+    const mapStr = list
+        .map((_a) => {
+        var { key, value } = _a, other = __rest(_a, ["key", "value"]);
+        return (Object.assign({ key: key || value, value }, other));
+    })
+        .reduce((pre, item) => {
+        const { key, value } = item;
+        const { set, list } = pre;
+        if (!set.has(key)) {
+            list.push(item);
+            set.add(key);
+        }
+        else {
+            log('warning', 'remove same key', `${key} -> ${value}`);
+        }
+        return pre;
+    }, {
+        set: new Set(),
+        list: [],
+    })
+        .list
+        .map(({ key, value, id }) => {
         return `${PRE_LINE}// id: ${id}\n`
             + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(value)},\n`;
-    }).join('\n');
+    })
+        .join('\n');
     const now = new Date();
     const nowTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `
         + `${now.getHours()}:${now.getMinutes()}`;

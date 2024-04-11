@@ -23,6 +23,13 @@
     "typescript": "5.0.2"
   },
   "scripts": {
-    "inject-i18n": "bin/inject-i18n.js"
+    "demo": "bin/inject-i18n.js -c ./demo/config.js",
+    "demo:clean-up": "bin/inject-i18n.js -c ./demo/config.js clean up",
+    "demo:export-rc": "bin/inject-i18n.js -c ./demo/config.js export-rc",
+    "dev": "ts-node src/index.ts -c ./demo/config.js",
+    "dev:clean-up": "ts-node src/index.ts -c ./demo/config.js clean up",
+    "dev:export-rc": "ts-node src/index.ts -c ./demo/config.js export-rc",
+    "build": "tsc",
+    "build:watch": "tsc --watch"
   }
 }

@@ -9,7 +9,6 @@ const defaultSaveKeyFn = () => ({
     key: '',
     value: '',
     file: 'unknown',
-    condition: 'unknown',
     id: -1,
     tag: 'default',
 });
@@ -109,7 +108,6 @@ export function wrapTemplateLiteral(
         if (t.isIdentifier(exp)) {
             const { name } = exp;
             str = name;
-            console.log('prop name', name);
             expressionProps.push(
                 t.objectProperty(
                     t.identifier(name),

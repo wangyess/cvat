@@ -20,7 +20,7 @@
       "id": 1
     },
     {
-      "key": "",
+      "key": "#DISABLED_KEY",
       "value": "Text1",
       "file": "jsx.tsx",
       "tag": "Text",
@@ -115,7 +115,7 @@
       "id": 6
     },
     {
-      "key": "",
+      "key": "#SAME_AS_3",
       "value": "Delete",
       "loc": {
         "start": {
