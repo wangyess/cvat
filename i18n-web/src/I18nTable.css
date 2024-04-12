@@ -1,0 +1,39 @@
+.i18n-rc-table .ant-table-row:nth-child(2n+1) .ant-table-cell-row-hover
+{
+    background: #f8f8f8;
+}
+
+.i18n-rc-table .ant-table-row:nth-child(2n),
+.i18n-rc-table .ant-table-row:nth-child(2n) .ant-table-column-sort
+{
+    background: #efefef;
+}
+
+.i18n-rc-table .ant-table-row:nth-child(2n) .ant-table-cell-row-hover
+{
+    background: #cecece;
+}
+
+.i18n-rc-table .same-row {
+    opacity: 0.3;
+}
+
+.i18n-rc-table .same-row:hover {
+    opacity: 0.5;
+}
+
+.i18n-rc-table .recover-row {
+    opacity: 0.3;
+    background: #ffbeb7;
+}
+.i18n-rc-table .recover-row:nth-child(2n) {
+    background: #e57a6d;
+}
+.i18n-rc-table .recover-row:hover {
+    opacity: 0.5;
+}
+
+.i18n-rc-table .ant-table-cell-row-hover {
+    font-weight: 600;
+}
+
