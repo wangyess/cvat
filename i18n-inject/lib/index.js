@@ -84,9 +84,9 @@ commander_1.program
         log('trans', file, '->', outFile);
         yield (0, transform_1.transformFile)(inFile, file, outFile, conditionSets, conf.i18n, i18nStore);
     }
-    const rcFile = path_1.default.join(configFileDir, conf.i18n.resourceRawFile);
-    log('saving', rcFile);
-    yield fs_extra_1.default.outputJSON(rcFile, i18nStore, { spaces: 2 });
+    const rcRawFile = path_1.default.join(configFileDir, conf.i18n.resourceRawFile);
+    log('saving', rcRawFile);
+    yield fs_extra_1.default.outputJSON(rcRawFile, i18nStore, { spaces: 2 });
 }));
 commander_1.program.command('clean-up')
     .description(`remove comment id before translate function

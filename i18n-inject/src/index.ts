@@ -9,7 +9,7 @@ import { I18nItem, Store, RcRaw } from './i18n';
 import { version } from '../package.json';
 import { CliConfig, ConditionKeys, ConditionSets } from './config';
 import { removeComment } from './removeComment';
-
+import { patchFile } from './patch-rc';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const log = extendLog('cli');
 
@@ -168,4 +168,54 @@ program.command('export-rc')
         }
     )
 
+
+program.command('patch-rc')
+    .description(`update code in destDir, applying changes
+    1. link same key
+    2. recover inject
+    `)
+    .action(async (_, command) => {
+        const CWD = process.cwd();
+        const options = command.optsWithGlobals();
+        log('CWD', CWD, options);
+
+        const configFilePath = path.join(CWD, options.configFile);
+        const configFileDir = path.dirname(configFilePath);
+
+        const conf = await loadConfig(configFilePath);
+
+        const rcRawFilePath = path.join(configFileDir, conf.i18n.resourceRawFile);
+        const { list } = require(rcRawFilePath) as RcRaw;
+        // id -> item
+        const rcIdMap = new Map(
+            list.map(item => {
+                return [item.id, item]
+            })
+        )
+        const rcUniqMap = new Map(
+            list.map(item => {
+                const { id , key, loc, ...other } = item;
+                const SAME_PREFIX = '#SAME_AS_'
+                if (key.startsWith(SAME_PREFIX)) {
+                    const targetId = + key.substr(SAME_PREFIX.length);
+                    log('same id', id, '->', targetId);
+                }
+                return [id, item];
+            })
+        )
+        const destDir = path.join(configFileDir, conf.destDir);
+        const g = await glob(
+            conf.srcPattern,
+            { cwd: destDir }
+        )
+        for(const file of g) {
+            const inFile = path.join(destDir, file);
+            log('deal', file);
+            await patchFile(
+                inFile,
+                rcIdMap,
+            )
+        }
+        log('success');
+    })
 program.parseAsync();

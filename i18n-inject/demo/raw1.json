@@ -20,7 +20,7 @@
       "id": 1
     },
     {
-      "key": "#DISABLED_KEY",
+      "key": "",
       "value": "Text1",
       "file": "jsx.tsx",
       "tag": "Text",
