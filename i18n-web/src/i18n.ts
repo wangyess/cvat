@@ -6,6 +6,7 @@ export interface I18nItem {
     id: number;
     key: string;
     value: string;
+    cnValue: string;
     file: string;
     loc?: t.SourceLocation;
     tag: string;

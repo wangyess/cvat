@@ -17,7 +17,8 @@
           "index": 198
         }
       },
-      "id": 1
+      "id": 1,
+      "cnValue": "标题"
     },
     {
       "key": "",
@@ -36,7 +37,8 @@
           "index": 288
         }
       },
-      "id": 2
+      "id": 2,
+      "cnValue": "文本"
     },
     {
       "key": "",
@@ -55,10 +57,11 @@
           "index": 401
         }
       },
-      "id": 3
+      "id": 3,
+      "cnValue": ""
     },
     {
-      "key": "#RECOVER",
+      "key": "",
       "value": "The task {{taskID}} will be deleted",
       "loc": {
         "start": {
@@ -74,7 +77,8 @@
       },
       "file": "call.ts",
       "tag": "Modal.confirm()",
-      "id": 4
+      "id": 4,
+      "cnValue": ""
     },
     {
       "key": "",
@@ -93,7 +97,8 @@
       },
       "file": "call.ts",
       "tag": "Modal.confirm()",
-      "id": 5
+      "id": 5,
+      "cnValue": ""
     },
     {
       "key": "",
@@ -112,10 +117,11 @@
       },
       "file": "call.ts",
       "tag": "Modal.confirm()",
-      "id": 6
+      "id": 6,
+      "cnValue": ""
     },
     {
-      "key": "#SAME_AS_3",
+      "key": "",
       "value": "Delete",
       "loc": {
         "start": {
@@ -131,7 +137,8 @@
       },
       "file": "call.ts",
       "tag": "Modal.confirm()",
-      "id": 7
+      "id": 7,
+      "cnValue": ""
     }
   ],
   "lastId": 7

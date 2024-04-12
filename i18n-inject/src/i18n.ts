@@ -14,6 +14,7 @@ export interface I18nItem {
     id: int;
     key: string;
     value: string;
+    cnValue?: string;
     file: string;
     loc?: t.SourceLocation;
     tag: string;
@@ -42,6 +43,7 @@ export class Store {
         if (!('id' in item)) {
             item.id = this.getNextId();
         }
+        item.cnValue = item.cnValue || '';
         logStore('add', item);
         this.list.push(item as I18nItem);
         return item as I18nItem;

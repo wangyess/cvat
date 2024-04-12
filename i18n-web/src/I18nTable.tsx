@@ -28,6 +28,15 @@ const columns: TableColumnProps<I18nItem>[] = [
         },
     },
     {
+        title: '中文',
+        dataIndex: 'cnValue',
+        key: 'cnValue',
+        sorter: {
+            compare: (a, b) => a.value > b.value ? 1 : -1,
+            multiple: 1,
+        },
+    },
+    {
         title: '位置',
         key: 'location',
         render: (_, record) => {
@@ -87,45 +96,73 @@ export default function I18nTable({
             }
         )
 
-    columns[1].render = (_, record) => {
-        return (
-            isSame(record)
-                ? <>
-                    <span>{record.key} </span>
-                    <Button
-                        size='small'
-                        onClick={() => changeKey(record,"")}
-                    >clear</Button>
-                  </>
-                : <Input
-                    allowClear={true}
-                    placeholder='留空则直接使用 value'
-                    value={record.key}
-                    onChange={(evt) => {
-                        changeKey(record, evt.target.value)
-                    }}
-                />
-        )
+    const colKey = columns.find(item => item.key === 'key');
+    if (colKey) {
+        colKey.render = (_, record) => {
+            return (
+                isSame(record)
+                    ? <>
+                        <span>{record.key} </span>
+                        <Button
+                            size='small'
+                            onClick={() => changeKey(record, "")}
+                        >clear</Button>
+                    </>
+                    : <Input
+                        allowClear={true}
+                        placeholder='留空则直接使用 value'
+                        value={record.key}
+                        onChange={(evt) => {
+                            changeKey(record, evt.target.value)
+                        }}
+                    />
+            )
+        }
     }
 
-    columns[5].render = (_, record) => {
-        const disable = isSame(record);
-        const recover = isRecover(record);
-        return (
-            <>
-                {
-                    recover
-                    ? <Button
-                            disabled={disable}
-                            onClick={() => changeKey(record, '')}
-                        >启用</Button>
-                    : <Button
-                        disabled={disable}
-                        onClick={() => changeKey(record, KEYS.RECOVER)}
-                    >还原</Button>
-                }
-            </>
-        )
+    const colCN = columns.find(item => item.key === 'cnValue');
+    if (colCN) {
+        colCN.render = (_, record) => {
+            return (
+                <Input
+                    allowClear={true}
+                    placeholder='留空则直接使用 value'
+                    value={record.cnValue}
+                    onChange={(evt) => {
+                        updateItem(
+                            record,
+                            record => {
+                                record.cnValue = evt.target.value;
+                                return record;
+                            }
+                        )
+                    }}
+                />
+            )
+        }
+    }
+
+    const colOp = columns.find(item => item.key === 'operate');
+    if (colOp) {
+        colOp.render = (_, record) => {
+            const disable = isSame(record);
+            const recover = isRecover(record);
+            return (
+                <>
+                    {
+                        recover
+                            ? <Button
+                                disabled={disable}
+                                onClick={() => changeKey(record, '')}
+                            >启用</Button>
+                            : <Button
+                                disabled={disable}
+                                onClick={() => changeKey(record, KEYS.RECOVER)}
+                            >还原</Button>
+                    }
+                </>
+            )
+        }
     }
     return (
         <Table

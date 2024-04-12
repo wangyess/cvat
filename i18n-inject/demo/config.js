@@ -5,6 +5,7 @@ module.exports = {
         functionName: 't',
         resourceRawFile: 'raw.json',
         resourceFile: './i18n/en.js',
+        resourceCNFile: './i18n/cn.js',
     },
     condition: {
         JSXAttribute: [

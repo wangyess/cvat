@@ -127,10 +127,10 @@ program.command('export-rc')
             const conf = await loadConfig(configFilePath);
 
             const rcRawFilePath = path.join(configFileDir, conf.i18n.resourceRawFile);
-            const rcFilePath = path.join(configFileDir, conf.i18n.resourceFile);
+
             const { list, lastId } = require(rcRawFilePath) as RcRaw;
             const PRE_LINE = '    ';
-            const mapStr = list
+            const uniqList = list
                 .map(({key, value, ...other}) => ({
                     key: key || value,
                     value,
@@ -150,21 +150,46 @@ program.command('export-rc')
                     set: new Set<string>(),
                     list: [] as I18nItem[],
                 })
-                .list
-                .map(({ key, value, id}) => {
-                    return `${PRE_LINE}// id: ${id}\n`
-                        + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(value)},\n`
-                })
-                .join('\n')
+                .list;
             const now = new Date();
             const nowTime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} `
                 + `${now.getHours()}:${now.getMinutes()}`
-            const rcStr = `// lastId: ${lastId}\n`
+            const headerStr = `// lastId: ${lastId}\n`
                 + `// createAt: ${nowTime}\n`
-                + `export default {\n${mapStr}\n}`
+            const rcList: Array<{
+                rcFileType: keyof CliConfig['i18n'],
+                prop: keyof I18nItem,
+            }> = [
+                {
+                    rcFileType: 'resourceFile',
+                    prop: 'value'
+                },
+                {
+                    rcFileType: 'resourceCNFile',
+                    prop: 'cnValue'
+                },
+            ];
 
-            await fse.outputFile(rcFilePath, rcStr, 'utf-8');
-            log('success', rcFilePath);
+            await Promise.all(
+                 rcList
+                    .map(async ({rcFileType, prop}) => {
+                        const rcFilePath = path.join(configFileDir, conf.i18n[rcFileType]);
+                        log('gen', rcFilePath);
+                        const mapStr = uniqList
+                            .map((item) => {
+                                const { key, value, id } = item;
+                                return `${PRE_LINE}// id: ${id}\n`
+                                    + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(item[prop])},\n`
+                            })
+                            .join('\n')
+                        const rcStr = headerStr
+                            + `export default {\n${mapStr}\n}`
+
+                        return await fse.outputFile(rcFilePath, rcStr, 'utf-8');
+                    })
+            )
+
+            log('success');
         }
     )
 

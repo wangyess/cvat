@@ -4,6 +4,7 @@ export type CliConfig = {
         path: string;
         functionName: string;
         resourceFile: string;
+        resourceCNFile: string;
         resourceRawFile: string;
     },
     condition: {
