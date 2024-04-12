@@ -4,7 +4,7 @@ import { NodePath } from '@babel/traverse';
 import { extendLog } from './log';
 import fse from 'fs-extra';
 
-const log = extendLog('patch-rc');
+const log = extendLog('patch-file');
 
 export async function patchFile(
     inFile: string,
@@ -38,11 +38,13 @@ export async function patchFile(
                                         return
                                     }
                                     let item = i18nItem;
-                                    log({i18nItem})
                                     if (i18nItem && i18nItem.key.startsWith('#SAME_AS_')) {
+
                                         const targetId = +i18nComment?.value.substr('#SAME_AS_'.length);
+                                        log('same as', targetId)
                                         const targetItem = map.get(targetId);
                                         if (targetItem) {
+                                            log('target item', targetItem);
                                             item = targetItem;
                                         }
                                     }

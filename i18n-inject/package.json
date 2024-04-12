@@ -29,6 +29,7 @@
     "dev": "ts-node src/index.ts -c ./demo/config.js",
     "dev:clean-up": "ts-node src/index.ts -c ./demo/config.js clean-up",
     "dev:export-rc": "ts-node src/index.ts -c ./demo/config.js export-rc",
+    "inject": "ts-node src/index.ts",
     "build": "tsc",
     "build:watch": "tsc --watch"
   }

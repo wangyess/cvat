@@ -1,5 +1,5 @@
 // lastId: 7
-// createAt: 2024-4-12 14:33
+// createAt: 2024-4-12 14:52
 export default {
     // id: 1
     "title1": "title1",
@@ -11,7 +11,7 @@ export default {
     "Delete": "Delete",
 
     // id: 4
-    "The task {{taskID}} will be deleted": "The task {{taskID}} will be deleted",
+    "#RECOVER": "The task {{taskID}} will be deleted",
 
     // id: 5
     "All related data (images, annotations) will be lost. Continue?": "All related data (images, annotations) will be lost. Continue?",

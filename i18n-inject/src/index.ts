@@ -179,7 +179,7 @@ program.command('export-rc')
                             .map((item) => {
                                 const { key, value, id } = item;
                                 return `${PRE_LINE}// id: ${id}\n`
-                                    + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(item[prop])},\n`
+                                    + `${PRE_LINE}${JSON.stringify(key || value)}: ${JSON.stringify(item[prop] || value)},\n`
                             })
                             .join('\n')
                         const rcStr = headerStr
