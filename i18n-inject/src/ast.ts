@@ -77,7 +77,11 @@ export function wrapStringLiteral(
     node: t.StringLiteral,
     funcName: string,
     saveKey: SaveKeyFn = defaultSaveKeyFn,
-): t.CallExpression {
+): t.CallExpression | t.StringLiteral {
+    // ignore string like cvat-xxx-xxx
+    if (node.value.startsWith('cvat-') && node.value.match(/^[\w-]$/)) {
+        return node;
+    }
     const { id } = saveKey({
         key: '',
         value: node.value as string,
